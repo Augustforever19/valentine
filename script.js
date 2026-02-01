@@ -18,7 +18,7 @@ noBtn.addEventListener("mouseenter", () => {
 });
 
 yesBtn.addEventListener("click", () => {
-  title.textContent = "Nandini, will you be my Valentine? YAY! ";
+  title.textContent = "Congratulations!! YAY ";
   buttons.classList.add("hidden");
   celebration.classList.remove("hidden");
   startConfetti();
