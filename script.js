@@ -1,56 +1,68 @@
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const title = document.getElementById("title");
-const buttons = document.getElementById("buttons");
-const celebration = document.getElementById("celebration");
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
+document.addEventListener('DOMContentLoaded', () => {
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+    const questionText = document.getElementById('question-text');
+    const mainImage = document.getElementById('main-image');
+    const buttonGroup = document.getElementById('button-group');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    const moveButton = () => {
+        const containerWidth = window.innerWidth;
+        const containerHeight = window.innerHeight;
 
-noBtn.addEventListener("mouseenter", () => {
-  const x = Math.random() * (buttons.offsetWidth - noBtn.offsetWidth);
-  const y = Math.random() * (buttons.offsetHeight - noBtn.offsetHeight);
-  noBtn.style.left = `${x}px`;
-  noBtn.style.top = `${y}px`;
-  noBtn.style.transform = "none";
-});
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
 
-yesBtn.addEventListener("click", () => {
-  title.textContent = "Congratulations!! YAY ";
-  buttons.classList.add("hidden");
-  celebration.classList.remove("hidden");
-  startConfetti();
-});
+        const maxX = containerWidth - btnWidth - 40;
+        const maxY = containerHeight - btnHeight - 40;
 
-let confettiPieces = [];
+        const randomX = Math.random() * maxX + 20;
+        const randomY = Math.random() * maxY + 20;
 
-function startConfetti() {
-  for (let i = 0; i < 150; i++) {
-    confettiPieces.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      size: Math.random() * 6 + 4,
-      speed: Math.random() * 3 + 2,
-      color: `hsl(${Math.random() * 360}, 80%, 70%)`
-    });
-  }
-  requestAnimationFrame(updateConfetti);
-}
+        noBtn.style.position = 'fixed'; 
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+    };
 
-function updateConfetti() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  confettiPieces.forEach(p => {
-    p.y += p.speed;
-    if (p.y > canvas.height) p.y = -10;
-    ctx.fillStyle = p.color;
-    ctx.fillRect(p.x, p.y, p.size, p.size);
-  });
-  requestAnimationFrame(updateConfetti);
-}
+    noBtn.addEventListener('mouseenter', moveButton);
+    noBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        moveButton();
+    });
 
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    yesBtn.addEventListener('click', () => {
+        questionText.innerText = "Nandini, will you be my Valentine? YAY! 🎉";
+
+        buttonGroup.style.display = 'none';
+
+        mainImage.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
+        
+        launchConfetti();
+    });
+
+    const launchConfetti = () => {
+        const duration = 3000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            
+            confetti(Object.assign({}, defaults, { 
+                particleCount, 
+                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+            }));
+            confetti(Object.assign({}, defaults, { 
+                particleCount, 
+                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+            }));
+        }, 250);
+    };
 });
