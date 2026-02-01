@@ -3,24 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <title>Valentine</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <div class="card" id="card">
       <div class="icon"></div>
+
       <h1 id="title">Nirali, will you be my Valentine?</h1>
+
       <div class="buttons" id="buttons">
         <button id="yesBtn">Yes</button>
         <button id="noBtn">No</button>
       </div>
+
       <div class="celebration hidden" id="celebration">
-        <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="celebrate">
+        <img
+          src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
+          alt="celebrate"
+        >
       </div>
     </div>
+
     <canvas id="confetti"></canvas>
   </div>
+  <script src="script.js" defer></script>
 </body>
 </html>
