@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Valentine</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="container">
-    <div class="card" id="card">
-      <div class="icon"></div>
-
-      <h1 id="title">Shivangi, will you be my Valentine?</h1>
-
-      <div class="buttons" id="buttons">
-        <button id="yesBtn">Yes</button>
-        <button id="noBtn">No</button>
-      </div>
-
-      <div class="celebration hidden" id="celebration">
-        <img
-          src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
-          alt="celebrate"
-        >
-      </div>
-    </div>
-
-    <canvas id="confetti"></canvas>
-  </div>
-
-  <script src="script.js" defer></script>
+    <div class="container">
+        <div class="card">
+            <div class="icon-container">
+                <img id="main-image" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3h5Z3h5Z3h5Z3h5Z3h5Z3h5Z3h5Z3h5Z3h5Z3h5Z3h5/hzLg1g5Q5F5Q5/giphy.gif" alt="Cute Bear">
+            </div>
+            <h1 id="question-text">Shivangi, will you be my Valentine?</h1>
+            
+            <div class="buttons" id="button-group">
+                <button id="yes-btn" class="btn yes-btn">Yes</button>
+                <button id="no-btn" class="btn no-btn">No</button>
+            </div>
+            
+            <div id="celebration-container" class="hidden"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
