@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     yesBtn.addEventListener('click', () => {
-        questionText.innerText = "Shivangi, I know you would come here. Congratulations on being my Valentine for Life! 🎉";
+        questionText.innerText = "I knew you would come here. Congratulations on being my Valentine for Life! 🎉";
 
         buttonGroup.style.display = 'none';
 
