@@ -67,7 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- SECRET HEART LOGIC ---
     heartBtn.addEventListener('click', () => {
+        // 1. Show the card
         secretCard.classList.remove('hidden');
+        
+        // 2. Hide the heart button (The requested change)
+        heartBtn.classList.add('hidden');
+
+        // 3. Animate card in
         setTimeout(() => {
             secretCard.classList.add('active');
         }, 10);
@@ -77,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
         secretCard.classList.remove('active');
         setTimeout(() => {
             secretCard.classList.add('hidden');
+            // Bring the heart back so they can open it again if they want
+            heartBtn.classList.remove('hidden'); 
         }, 400); 
     });
 });
