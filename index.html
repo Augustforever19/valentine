@@ -5,25 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="card">
+        <div class="card" id="main-card">
             <div class="icon-container">
-                <img id="main-image" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" alt="Cute Bear Asking" class="gif-asset">
+                <img id="main-image" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" alt="Cute Bear Asking">
             </div>
+            
             <h1 id="question-text">Shivangi, will you be my Valentine?</h1>
             
             <div class="buttons" id="button-group">
                 <button id="yes-btn" class="btn yes-btn">Yes</button>
-                <button id="no-btn" class="btn no-btn">Not An Option</button>
+                <button id="no-btn" class="btn no-btn">No</button>
             </div>
-            
-            <div id="celebration-container" class="hidden"></div>
         </div>
     </div>
+
+    <div class="secret-container">
+        <button id="heart-btn" class="heart-btn">
+            <span>Click Here</span>
+        </button>
+
+        <div id="secret-card" class="glass-card hidden">
+            <button id="close-secret" class="close-btn">&times;</button>
+            <h2>A Special Note</h2>
+            <p contenteditable="true">
+                Here is a sample text for your secret message! 
+                You can edit this in the HTML or type right here to test it.
+                <br><br>
+                (The background of this card is your custom image with a blur effect!)
+            </p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
