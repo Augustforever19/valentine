@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     yesBtn.addEventListener('click', () => {
-        questionText.innerText = "Nandini, will you be my Valentine? YAY! 🎉";
+        questionText.innerText = "I knew you would be here, Congratulations on being my Valentine for life 🎉";
         buttonGroup.style.display = 'none';
         mainImage.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
         launchConfetti();
