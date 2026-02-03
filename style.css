@@ -24,6 +24,7 @@ body {
     overflow: hidden; 
 }
 
+/* --- EXISTING MAIN CARD STYLES --- */
 .container {
     position: relative;
     width: 100%;
@@ -31,6 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10; /* Keep main card above background */
 }
 
 .card {
@@ -40,24 +42,23 @@ body {
     text-align: center;
     width: 90%;
     max-width: 400px;
-
     box-shadow: 20px 20px 60px var(--shadow-dark),
                 -20px -20px 60px var(--shadow-light);
     transition: all 0.3s ease;
-    z-index: 10;
 }
 
 .icon-container img {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
     margin-bottom: 20px;
     border-radius: 10px;
+    mix-blend-mode: multiply; 
 }
 
 h1 {
     color: var(--text-color);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 30px;
     line-height: 1.4;
@@ -67,8 +68,8 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 20px;
-    position: relative; 
-    min-height: 60px; 
+    position: relative;
+    min-height: 60px;
 }
 
 .btn {
@@ -81,7 +82,6 @@ h1 {
     cursor: pointer;
     font-size: 1rem;
     transition: transform 0.1s ease, box-shadow 0.2s ease;
-    
     box-shadow: 6px 6px 10px var(--shadow-dark),
                 -6px -6px 10px var(--shadow-light);
 }
@@ -100,9 +100,157 @@ h1 {
 .no-btn {
     background-color: var(--no-color);
     color: #555;
+    position: relative; 
+    white-space: nowrap;
+}
+
+/* --- NEW FEATURE: SECRET HEART & GLASS CARD --- */
+
+.secret-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Heart Button Styling */
+.heart-btn {
     position: relative;
+    width: 80px;
+    height: 80px;
+    background-color: #ff4d6d;
+    border: none;
+    cursor: pointer;
+    transform: rotate(-45deg);
+    animation: heartbeat 1.5s infinite;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.heart-btn::before,
+.heart-btn::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: #ff4d6d;
+    border-radius: 50%;
+}
+
+.heart-btn::before {
+    top: -40px;
+    left: 0;
+}
+
+.heart-btn::after {
+    left: 40px;
+    top: 0;
+}
+
+/* Text inside the heart (rotated back to be readable) */
+.heart-btn span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    color: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+
+@keyframes heartbeat {
+    0% { transform: rotate(-45deg) scale(1); }
+    15% { transform: rotate(-45deg) scale(1.1); }
+    30% { transform: rotate(-45deg) scale(1); }
+    45% { transform: rotate(-45deg) scale(1.1); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* Transition to Glass Card */
+.glass-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Start hidden/small */
+    width: 90%;
+    max-width: 350px;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-card.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Background Image with Blur Effect */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* REPLACE THIS URL WITH YOUR IMAGE */
+    background-image: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* The Blur Effect */
+    z-index: -1;
+}
+
+/* Dark overlay to make text readable over any image */
+.glass-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: -1;
+}
+
+.glass-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.glass-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .hidden {
     display: none;
+}
+.glass-card.hidden {
+    display: block; /* Overridden by transform scale, but kept for logic */
+    transform: translate(-50%, -50%) scale(0);
 }
