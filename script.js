@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- EXISTING LOGIC (PRESERVED) ---
+    // --- ELEMENTS ---
     const yesBtn = document.getElementById('yes-btn');
     const noBtn = document.getElementById('no-btn');
     const questionText = document.getElementById('question-text');
     const mainImage = document.getElementById('main-image');
     const buttonGroup = document.getElementById('button-group');
+    const heartBtn = document.getElementById('heart-btn');
+    const secretCard = document.getElementById('secret-card');
+    const closeSecret = document.getElementById('close-secret');
 
+    // --- RUNAWAY NO BUTTON ---
     const moveButton = () => {
         const containerWidth = window.innerWidth;
         const containerHeight = window.innerHeight;
@@ -27,13 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
         moveButton();
     });
 
+    // --- YES BUTTON CLICK ---
     yesBtn.addEventListener('click', () => {
+        // 1. Update text
         questionText.innerText = "I knew you would be here, Congratulations on being my Valentine for life 🎉";
+        
+        // 2. Hide yes/no buttons
         buttonGroup.style.display = 'none';
+        
+        // 3. Update image
         mainImage.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
+        
+        // 4. Reveal the Secret Heart Button (Centered Below)
+        heartBtn.classList.remove('hidden');
+
+        // 5. Trigger confetti
         launchConfetti();
     });
 
+    // --- CONFETTI LOGIC ---
     const launchConfetti = () => {
         const duration = 3000;
         const animationEnd = Date.now() + duration;
@@ -49,25 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 250);
     };
 
-    // --- NEW LOGIC: SECRET HEART BUTTON ---
-    const heartBtn = document.getElementById('heart-btn');
-    const secretCard = document.getElementById('secret-card');
-    const closeSecret = document.getElementById('close-secret');
-
-    // Show the card when heart is clicked
+    // --- SECRET HEART LOGIC ---
     heartBtn.addEventListener('click', () => {
         secretCard.classList.remove('hidden');
-        // Small delay to allow CSS transition to render the scale up
         setTimeout(() => {
             secretCard.classList.add('active');
         }, 10);
     });
 
-    // Close the card
     closeSecret.addEventListener('click', () => {
         secretCard.classList.remove('active');
         setTimeout(() => {
             secretCard.classList.add('hidden');
-        }, 400); // Wait for transition to finish
+        }, 400); 
     });
 });
