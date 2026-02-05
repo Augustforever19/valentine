@@ -185,8 +185,8 @@ h1 {
     color: #fff;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     display: block; 
     z-index: 100;
 }
@@ -216,7 +216,7 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4); 
+    background: linear-gradient(to bottom, rgba(82, 45, 45, 0.4), rgba(0, 0, 0, 0.8));
     z-index: -1;
 }
 
@@ -246,4 +246,7 @@ h1 {
 
 .hidden {
     display: none!important;
+}
+.glass-card p,.glass-card h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
