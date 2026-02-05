@@ -33,19 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- YES BUTTON CLICK ---
     yesBtn.addEventListener('click', () => {
-        // 1. Update text
         questionText.innerText = "I knew you would be here, Congratulations on being my Valentine for life 🎉";
-        
-        // 2. Hide yes/no buttons
         buttonGroup.style.display = 'none';
-        
-        // 3. Update image
         mainImage.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
         
-        // 4. Reveal the Secret Heart Button (Centered Below)
+        // REVEAL THE HEART BUTTON
         heartBtn.classList.remove('hidden');
 
-        // 5. Trigger confetti
         launchConfetti();
     });
 
@@ -70,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Show the card
         secretCard.classList.remove('hidden');
         
-        // 2. Hide the heart button (The requested change)
+        // 2. HIDE THE HEART BUTTON (Critical Fix)
         heartBtn.classList.add('hidden');
 
         // 3. Animate card in
@@ -83,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         secretCard.classList.remove('active');
         setTimeout(() => {
             secretCard.classList.add('hidden');
-            // Bring the heart back so they can open it again if they want
+            // Show heart again so they can reopen if they want
             heartBtn.classList.remove('hidden'); 
         }, 400); 
     });
